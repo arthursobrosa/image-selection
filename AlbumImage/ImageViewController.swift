@@ -17,6 +17,12 @@ class ImageViewController: UIViewController {
         imageView.image = UIImage(systemName: "person.fill")
         imageView.layer.borderColor = UIColor.label.cgColor
         imageView.layer.borderWidth = 2
+        
+        /// to have correct border color in light and dark mode
+        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (_: Self, _: UITraitCollection) in
+            imageView.layer.borderColor = UIColor.label.cgColor
+        }
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         imageView.addGestureRecognizer(tapGesture)
         imageView.isUserInteractionEnabled = true
